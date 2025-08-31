@@ -10,19 +10,24 @@ package maze;
 public class MazeScriptRunner {
 
     public static void main(String[] args) {
-        // TEST CODE
-        long startGeneration = System.currentTimeMillis();
-        Maze maze = new MazeGenerator().generate(30, 30);
-        long endGeneration = System.currentTimeMillis();
-        System.out.println(maze.toString());
-        System.out.println("Generation time: " + (endGeneration - startGeneration) + " ms");
 
-        long startSolve = System.currentTimeMillis();
+        long startGeneration = System.nanoTime();
+        Maze maze = new MazeGenerator().generate(30, 30);
+        long endGeneration = System.nanoTime();
+
+        System.out.println(maze.toString());
+        double generateTime = (endGeneration - startGeneration) / 1_000_000.0;
+        System.out.printf("Generation time: %.2f ms%n", generateTime);
+
         MazeSolver solvedMaze = new MazeSolver(maze);
+
+        long startSolve = System.nanoTime();
         Maze solution = solvedMaze.solve(maze.getStart()[0], maze.getStart()[1], maze.getEnd()[0], maze.getEnd()[1]);
-        long endSolve = System.currentTimeMillis();
-        System.out.println(solution.toString());
-        System.out.println("Solve time: " + (endSolve - startSolve) + " ms");
+        long endSolve = System.nanoTime();
+
+        System.out.println("\n" + solution.toString());
+        double solveTime = (endSolve - startSolve) / 1_000_000.0;
+        System.out.printf("Solve time: %.2f ms%n", solveTime);
 
 
 
