@@ -1,4 +1,5 @@
-package main.java;
+package maze;
+// package main.java;
 // class that generates mazes
 
 import java.util.Collections;
@@ -27,11 +28,12 @@ public class MazeGenerator {
         stack.push(start);
         while (!stack.isEmpty()) {
             int[] current = stack.pop();
-            if ((current[0] == mazeObject.getEnd()[0]) && (current[1] == mazeObject.getEnd()[1])) {
-                break;
-            }
             int r = current[0];
             int c = current[1];
+
+            if ((r == mazeObject.getEnd()[0]) && (c == mazeObject.getEnd()[1])) {
+                break;
+            }
             
             int[][] neighbors = {
                 {r-2, c},

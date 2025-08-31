@@ -1,4 +1,5 @@
-package main.java;
+package maze;
+// package main.java;
 // import static spark.Spark.*;
 //import com.google.gson.Gson;
 
@@ -10,11 +11,18 @@ public class MazeScriptRunner {
 
     public static void main(String[] args) {
         // TEST CODE
-
-        Maze maze = new MazeGenerator().generate(8, 8);
+        long startGeneration = System.currentTimeMillis();
+        Maze maze = new MazeGenerator().generate(30, 30);
+        long endGeneration = System.currentTimeMillis();
         System.out.println(maze.toString());
-        //List<int[]> path = new MazeSolver().solve(maze);
-        //System.out.println(path);
+        System.out.println("Generation time: " + (endGeneration - startGeneration) + " ms");
+
+        long startSolve = System.currentTimeMillis();
+        MazeSolver solvedMaze = new MazeSolver(maze);
+        Maze solution = solvedMaze.solve(maze.getStart()[0], maze.getStart()[1], maze.getEnd()[0], maze.getEnd()[1]);
+        long endSolve = System.currentTimeMillis();
+        System.out.println(solution.toString());
+        System.out.println("Solve time: " + (endSolve - startSolve) + " ms");
 
 
 

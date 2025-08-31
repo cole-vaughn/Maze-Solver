@@ -1,4 +1,5 @@
-package main.java;
+package maze;
+// package main.java;
 
 //import java.util.List;
 //import java.util.ArrayList;
@@ -20,6 +21,13 @@ public class Maze {
         grid = new int[rows][cols];
         start = new int[]{0,0};
         end = new int[]{rows - 1, cols - 1};
+    }
+
+    public Maze(int[][] layout) {
+        this.grid = layout;
+        this.rows = layout.length;
+        this.cols = layout[0].length;
+        // start and end will be null
     }
 
     public String toString() {
